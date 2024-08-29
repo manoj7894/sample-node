@@ -5,14 +5,15 @@ import dotenv from "dotenv"
 const app = express();
 dotenv.config();
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT;
 const MONGOURL = process.env.MONGO_URL;
 
+app.listen(PORT, () => {
+    console.log('Sever started and running at ${PORT}')
+})
+
 mongoose.connect(MONGOURL).then( ()=>{
-    console.log("Database is connected successfully.");
-    app.listen(PORT, () => {
-        console.log('server is running on port ${PORT}');
-    });
+    console.log("Database is connected successfully.")    
 })
 .catch((error)=>console.log(error));
 
